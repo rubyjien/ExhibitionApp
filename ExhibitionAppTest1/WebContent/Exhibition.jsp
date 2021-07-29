@@ -59,7 +59,7 @@ if(rs.next()){
 </tr>
 <tr>
    <td colspan="2">
-   <input type="text" name="placename" value="<%=placename %>" class="inputStyle"/></td>
+   <input type="text"  name="placename" value="<%=placename %>" class="inputStyle"/></td>
    <td><input type="text" name="exprice" value="<%=exprice %>" class="inputStyle"/></td>
    <td><input type="date" name="sdate" value="<%=sdate %>" class="inputStyle"/></td>
    <td><input type="date" name="edate" value="<%=edate %>" class="inputStyle"/></td>
