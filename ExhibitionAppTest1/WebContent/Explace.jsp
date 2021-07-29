@@ -32,11 +32,11 @@
 		%>
 		<tr>
 		<td><%=codes %></td>
-		<td><%=placename %></td>
-		<td><%=rslocation %></td>
-		<td><%=contactno %></td>
-		<td><%=times %></td>
-		<td><%=holiday %></td>
+		<td><%=placename%></td>
+		<td><%=rslocation%></td>
+		<td><%=contactno%></td>
+		<td><%=times%></td>
+		<td><%=holiday%></td>
 		<td>
 		<form action="ExplaceModiFrm.jsp" method="get">
 		<input type="hidden" value="<%=codes%>" name="CodeChk"/>
