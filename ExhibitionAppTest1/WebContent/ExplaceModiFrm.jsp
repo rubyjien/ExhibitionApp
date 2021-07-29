@@ -6,7 +6,7 @@
 
    String code = request.getParameter("CodeChk");
 
-	String sql ="select * from explace where code =? ";
+	String sql ="select * from explace where code =?";
 	pstmt = conn.prepareStatement(sql);
 	pstmt.setString(1,code);
 
