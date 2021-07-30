@@ -9,7 +9,7 @@
 	request.setCharacterEncoding("utf-8");
 
    	String codes = request.getParameter("CodeChk");
-	//전역변수로 설정해서 전시곤 련관 정보 찍어줄 변수 생성.
+	//전역변수로 설정해서 전시관 관련 정보 찍어줄 변수 생성.
 	String placename= "";
 	String rslocation= "";
 	String contactno= "";
@@ -39,30 +39,35 @@ if(rs.next()){
 	<table class="table table-striped">	
 	<tr>
 		<th>전시관 코드</th>
-		<td><input type="text" class="form-control" value="<%=codes%>" name="codes" disabled/></td>
+		<td><%=codes%><input type="hidden" class="form-control" value="<%=codes%>" name="codes"/></td>
 	</tr>
 	<tr>
 		<th>전시관 이름</th>
 		<td><input type="text" class="form-control" value="<%=placename%>" name="placename"/></td>
 	</tr>
 	<tr>
-		<th>위치</th>
+		<th>위치(수정불가)</th>
 		<td><input type="text" class="form-control" value="<%=rslocation%>" disabled/></td>
 	</tr>
 	<tr>
 		<th>연락처</th>
-		<td><input type="text" class="form-control" value="<%=contactno%>"name="contactno"/></td>
+		<td><input type="text" class="form-control" value="<%=contactno%>" name="contactno"/></td>
 	</tr>
 	<tr>
 		<th>개관시간</th>
-		<td><h4><%out.println(times.substring(1,3) + "시 ~ " + times.substring(4,6) + "까지"); %></h4>
-            OPEN : <input type="text" name="times1" class="form-control" value="<%=times.substring(1,3)%>"/>
-            CLOSE : <input type="text" name="times1" class="form-control" value="<%=times.substring(4,6)%>"/>
+		<td>
+		<h4><%out.println(times.substring(1,3) + "시 ~ " + times.substring(4,6) + "까지"); %></h4>
+        <div class="form-group form-inline">
+            OPEN : <input type="text" class="form-inline form-control" name="n1" value="<%=times.substring(1,3)%>"/>&nbsp;&nbsp;&nbsp;
+            CLOSE : <input type="text" class="form-inline form-control" name="n2" value="<%=times.substring(4,6)%>"/>
+            <!-- 나중에 문자열하고 합해서 times 필드에 넣어줄것. 
+            n1은 시작시간, n2는 종료시간 "s"+n1==s10 -->           
+         </div>
 		</td>
 	</tr>
 	<tr>
 		<th>휴관일</th>
-		<td><input type="text" value="<%=holiday %>" name="holiday"/></td>
+		<td><input type="text"  class="form-control" value="<%=holiday %>" name="holiday"/></td>
 	</tr>
 		<tr>
 		<th colspan="2" >
@@ -76,9 +81,8 @@ if(rs.next()){
 	
 	<%}while(rs.next());
 }else{out.println("조회실패");}
+
 %>
-
-
 
 
 <%@ include file="./include/Footer.jsp" %>
