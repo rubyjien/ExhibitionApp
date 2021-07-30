@@ -3,38 +3,38 @@
 <%@ include file="./include/Header.jsp" %>
 <%@ include file="./include/incLogin.jsp" %>
 
-<h2 class="text-center text-primary">티켓 예매 페이지</h2>
 <section class="row">
-<%	 String sql = "select * from exhibition order by exidx";
+<br/><br/>
+<div class="col-md-12">
+<h3 class="text-center">관람권 예약</h3>
+<%
+String sql = "select * from exhibition";
 pstmt = conn.prepareStatement(sql);
 rs = pstmt.executeQuery();
 if(rs.next()){
-	do{
-		String exidx = rs.getString("exidx");
-		String extitle = rs.getString("extitle");
-		String placename = rs.getString("placename");
-		String texts = rs.getString("texts");
-		String genre = rs.getString("genre");
-		String author = rs.getString("author");
-		String rating = rs.getString("rating");
-		int exprice = rs.getInt("exprice");
-		String sdate = rs.getString("sdate");
-		String edate = rs.getString("edate");
-		%>
+   do{
+      String extitle = rs.getString("extitle");
+      String genre = rs.getString("genre");
+      String author = rs.getString("author"); 
+      String rating = rs.getString("rating");
+      String texts = rs.getString("texts"); 
+      String placename = rs.getString("placename");
+      int exprice = rs.getInt("exprice");
+      String sdate = rs.getString("sdate");
+    
+
+%>
 <div class="col-md-12">
-<form action="ReservationInsertProc.jsp?" method="post">
+<form action="ReservationInsertProc.jsp" method="post" >
 <table class="table">
 <tr class="active">
-   <th>전시회고유코드</th>
-   <th colspan="2">전시회명</th>
+   <th colspan="3">전시회명</th>
    <th>장르</th>
    <th>작가</th>
    <th>관람등급</th>
 </tr>
 <tr>
-   <td><input type="text" name="exidx" value="<%=exidx %>" class="inputStyle" disabled/>
-   </td>
-   <td colspan="2">
+   <td colspan="3">
    <input type="text" name="extitle" value="<%=extitle %>" class="inputStyle"/>
    </td>
    <td>
@@ -49,25 +49,33 @@ if(rs.next()){
 <tr class="active">
    <th colspan="2">전시장소 정보</th>
    <th>관람료</th>
-   <th>전시시작일자</th>
-   <th>전시종료일자</th>
-   <th>도슨트</th>
+   <th>관람일자</th>
+   <th>티켓매수</th>
+   <th>결제수단</th>
 </tr>
 <tr>
    <td colspan="2">
    <input type="text" name="placename" value="<%=placename %>" class="inputStyle"/></td>
    <td><input type="text" name="exprice" value="<%=exprice %>" class="inputStyle"/></td>
-   <td><input type="date" name="sdate" value="<%=sdate %>" class="inputStyle"/></td>
-   <td><input type="date" name="edate" value="<%=edate %>" class="inputStyle"/></td>
+  <td><input type="date" name="sdate" value="<%=sdate %>" class="inputStyle"/></td>
+   <td><input type="number" name="tcnt" value="1" class="inputStyle"/></td>
+   <td>
+   <select name="payment" class="form-control">
+         <option value="신용카드">신용카드</option>
+         <option value="계좌이체">계좌이체</option>
+        
+   </select>
+   </td>
 
-</tr>
+
+
 <tr>
    <th colspan="1"  class="active">전시회 설명</th>
    <td colspan="3">
       <textarea rows="4" name="texts"><%=texts %></textarea>
    </td>
    <td colspan="2" class="ver">
-   <input type="submit" value="예매하기" class="btn btn-success btn-block"/>
+   <input type="submit" value="예매하기" class="btn btn-block btn-success"/>
    </td>
 </tr>
 </table>
